@@ -18,6 +18,15 @@ else()
     message("System hasn't large file support.")
 endif()
 
+#Detect OpenMP
+FIND_PACKAGE(OpenMP) 
+if (OPENMP_FOUND) 
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+  option(USE_OPENMP "Use OpenMP for parallelization" ON)
+else(OPENMP_FOUND)
+  option(USE_OPENMP "Use OpenMP for parallelization" OFF)
+endif (OPENMP_FOUND)
+
 include_directories(include)
 
 # Make the headers appear in IDEs.
@@ -37,4 +46,7 @@ set(daisy_srcs
 )
 
 add_library(daisy ${daisy_srcs} ${daisy_hdrs})
+
+ADD_EXECUTABLE(main_daisy src/main.cpp)
+TARGET_LINK_LIBRARIES(main_daisy daisy)
 

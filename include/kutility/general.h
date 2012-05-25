@@ -571,9 +571,9 @@ namespace kutility
 
    inline bool is_number( std::string str )
    {
-      int len=str.length();
+      size_t len=str.length();
 
-      for( int i=0; i<len; i++)
+      for( size_t i=0; i<len; i++)
       {
          if( is_digit(str[i]) || str[i] == '.' || str[i] == '-' )
             continue;
@@ -607,9 +607,9 @@ namespace kutility
 
    inline bool is_integer( std::string str )
    {
-      int len=str.length();
+      size_t len=str.length();
 
-      for( int i=0; i<len; i++)
+      for( size_t i=0; i<len; i++)
       {
          if( is_digit(str[i]) || str[i] == '-' )
             continue;

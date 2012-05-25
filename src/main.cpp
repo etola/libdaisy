@@ -252,7 +252,7 @@ int main( int argc, char **argv  )
    double yy, xx;
    int ori;
    string outname = filename;
-   int rand_samples[N*2];
+   std::vector<int> rand_samples(N*2, 0);
    for( int i=0; i<N;i++) {
       rand_samples[2*i]=rand()%(h-1)+0.4;
       rand_samples[2*i+1]=rand()%(w-1)+0.4;
@@ -271,7 +271,9 @@ int main( int argc, char **argv  )
       break;
    case SAVE_SINGLE:
       fname = filename;
-      fname = fname + "_y="  + itoa(opy,buffer,10) + "_x=" + itoa(opx,buffer,10) + "_o=" + itoa(opo,buffer,10) + ".desc";
+      fname = fname + "_y="  + kutility::itoa(opy,buffer,10) + "_x=" 
+        + kutility::itoa(opx,buffer,10) 
+        + "_o=" + kutility::itoa(opo,buffer,10) + ".desc";
       desc->get_descriptor(opy,opx,opo,thor);
       save( fname, thor, desc->grid_point_number(), histq );
       break;
